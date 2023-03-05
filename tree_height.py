@@ -29,9 +29,9 @@ def compute_height(n, parents):
 
 def main():
     # implement input form keyboard and from files
-    input_lines = sys.stdin.readlines()
-    n = int(input_lines[1])
-    parents = list(map(int, input_lines[2].split()))
+    n = input()
+    n = int(input())
+    parents = list(map(int, input().split()))
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     
