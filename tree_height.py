@@ -26,13 +26,13 @@ def compute_height(n, parents):
     return get_height(root, 1)
 
 def main():
-    input_method = input().strip()
-    if input_method =="I":
+    input_method = input()
+    if "I" in input_method:
         n = int(input())
         parents = list(map(int, input().split()))
-    else:
+    elif "F" in input_method:
         file = input().strip()
-        path= file+"./test/"
+        path= "./test/"+file
         with open(path, 'r', encoding='utf-8') as file:
             n = int(file.readline())
             parents = list(map(int, file.readline().split()))
