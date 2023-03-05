@@ -2,11 +2,11 @@
 
 import sys
 import threading
-import numpy as numerz
+import numpy
 
 
 def compute_height(n, parents):
-    high = numerz.zeros(int(n))
+    high = numpy.zeros(int(n))
     max_height = 0
     for i in range(int(n)):
         if high[i] >0:
