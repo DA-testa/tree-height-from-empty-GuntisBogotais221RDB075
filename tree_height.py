@@ -6,48 +6,37 @@ import numpy
 
 
 def compute_height(n, parents):
-    high = numpy.zeros(int(n))
-    max_height = 0
-    for i in range(int(n)):
-        if high[i] >0:
-            height=0
-            j=1
-            while j !=-1:
-                if high[j]:
-                    height = height+height[j]
-                    break
-                else:
-                    height=height+1
-                    j = int(parents[j])
-                high[i]=height
-                if height > max_height:
-                    max_height=height
-    return max_height
+    root= -1
+    for i in range(n):
+        if parents[i]==-1:
+            root= i
+            break
+
+    tree=[[] for i in range(n)]
+    for i in range(n):
+        if parents[i]!=-1:
+            tree[parents[i]].append(i)
+    def get_height(node, depth):
+        if not tree[node]:
+            return depth
+        max_depth = depth
+        for child in tree[node]:
+            max_depth=max(max_depth, get_height(child, depth+1))
+        return max_depth
+    return get_height(root, 1)
 
 def main():
     input_method = input().strip()
     if input_method =="I":
-        n=input().strip()
-        if n is not None:
-            parents = input().strip().split()
-            if parents:
-                height = compute_height(n, parents)
-                print(height)
+        n = int(input())
+        parents = list(map(int, input().split()))
     else:
-        file_location = input().strip()
-        try:
-            with open(f"./test/{file_location}") as f:
-                content = f.readlines()
-        except FileNotFoundError:
-            print("no file")
-            return
-        n=content[0].strip()
-        if n is not None:
-            parents = content[1].strip().split()
-            if parents:
-                height = compute_height(n, parents)
-                print(height)
-
+        file = input().strip()
+        path= file+"./test/"
+        with open(path, 'r', encoding='utf-8') as file:
+            n = int(file.readline())
+            parents = list(map(int, file.readline().split()))
+    print(compute_height(n, parents))
 
 sys.setrecursionlimit(10**7)
 threading.stack_size(2**27)
