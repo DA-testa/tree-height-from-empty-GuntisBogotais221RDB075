@@ -7,20 +7,37 @@ import numpy
 
 def compute_height(n, parents):
     # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
+    root= -1
+    for i in range(n):
+        if parents[i]==-1:
+            root= i
+            break
 
+    tree=[[] for i in range(n)]
+    for i in range(n):
+        if parents[i]!=-1:
+            tree[parents[i]].append(i)
+    # Your code here
+    def get_height(node, depth):
+        if not tree[node]:
+            return depth
+        max_depth = depth
+        for child in tree[node]:
+            max_depth=max(max_depth, get_height(child, depth+1))
+        return max_depth
+    return get_height(root, 1)
 
 def main():
     # implement input form keyboard and from files
-    
+    n = int(input())
+    parents = list(map(int, input().split()))
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
+    print(compute_height(n, parents))
     pass
 
 # In Python, the default limit on recursion depth is rather low,
