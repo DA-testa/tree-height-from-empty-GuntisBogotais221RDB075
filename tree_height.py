@@ -29,7 +29,7 @@ def compute_height(n, parents):
 
 def main():
     # implement input form keyboard and from files
-    n = int(input())
+    n = input()
     n = int(input())
     parents = list(map(int, input().split()))
     # let user input file name to use, don't allow file names with letter a
