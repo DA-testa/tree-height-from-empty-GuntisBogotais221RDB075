@@ -18,20 +18,20 @@ def compute_height(n, parents):
         if parents[i]!=-1:
             tree[parents[i]].append(i)
     # Your code here
-    def get_height(node, depth):
+    def max_height(node, depth):
         if not tree[node]:
             return depth
         max_depth = depth
         for child in tree[node]:
-            max_depth=max(max_depth, get_height(child, depth+1))
+            max_depth=max(max_depth, max_height(child, depth+1))
         return max_depth
-    return get_height(root, 1)
+    return max_height(root, 1)
 
 def main():
     # implement input form keyboard and from files
     n = input()
-    n = int(sys.stdin.readline().strip())
-    parents = list(map(int, sys.stdin.readline().strip().split()))
+    n = int(input())
+    parents = list(map(int, input().split()))
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     
@@ -47,4 +47,5 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
+main()
 # print(numpy.array([1,2,3]))
