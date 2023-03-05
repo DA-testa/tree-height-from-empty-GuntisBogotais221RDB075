@@ -29,9 +29,9 @@ def compute_height(n, parents):
 
 def main():
     # implement input form keyboard and from files
-    n = int(input())
-    n = int(input())
-    parents = list(map(int, input().split()))
+    input_lines = sys.stdin.readlines()
+    n = int(input_lines[1])
+    parents = list(map(int, input_lines[2].split()))
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     
@@ -47,4 +47,5 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
+main()
 # print(numpy.array([1,2,3]))
